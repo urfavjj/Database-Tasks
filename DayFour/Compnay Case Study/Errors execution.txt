@@ -1,0 +1,47 @@
+USE Company_Database;
+
+Department
+
+INSERT INTO DEPARTMENT
+(Dno, Dname, Manager_Id, Hire_date)
+VALUES
+(1, 'Headquarters', 888665555, '1981-06-19'),
+(2, 'Marketing', 987654321, '1998-01-01'),
+(3, 'Finance', 999887777, '2005-03-15'),
+(4, 'Administration', 987654321, '1995-01-01'),
+(5, 'Research', 333445555, '1988-05-22');
+
+output: Msg 2627, Level 14, State 1, Line 4 Violation of UNIQUE KEY constraint 'uq_dept_manager'. Cannot insert duplicate key in object 'dbo.DEPARTMENT'. The duplicate key value is (<NULL>). The statement has been terminated.
+
+Fix: ALTER TABLE DEPARTMENT
+DROP CONSTRAINT uq_dept_manager;
+
+INSERT INTO DEPARTMENT
+(Dno, Dname, Manager_Id, Hire_date)
+VALUES
+(1, 'Headquarters', NULL, '1981-06-19'),
+(2, 'Marketing', NULL, '1998-01-01'),
+(3, 'Finance', NULL, '2005-03-15'),
+(4, 'Administration', NULL, '1995-01-01'),
+(5, 'Research', NULL, '1988-05-22');
+
+
+UPDATE DEPARTMENT
+SET Manager_Id = '888665555'
+WHERE Dno = 1;
+
+UPDATE DEPARTMENT
+SET Manager_Id = '987654321'
+WHERE Dno = 2;
+
+UPDATE DEPARTMENT
+SET Manager_Id = '999887777'
+WHERE Dno = 3;
+
+UPDATE DEPARTMENT
+SET Manager_Id = '987654321'
+WHERE Dno = 4;
+
+UPDATE DEPARTMENT
+SET Manager_Id = '333445555'
+WHERE Dno = 5;
