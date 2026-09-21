@@ -1,0 +1,69 @@
+CREATE DATABASE Company_Database;
+USE Company_Database;
+
+-- DEPARTMENT Table
+CREATE TABLE DEPARTMENT (
+    Dno INT PRIMARY KEY,
+    Dname VARCHAR(50) NOT NULL UNIQUE,
+    Manager_Id CHAR(9) NULL,
+    Hire_date DATE NULL
+);
+
+
+-- EMPLOYEE Table
+CREATE TABLE EMPLOYEE (
+    SSN CHAR(9) PRIMARY KEY,
+    Fname VARCHAR(30) NOT NULL,
+    Lname VARCHAR(30) NOT NULL,
+    Gender CHAR(1) CHECK (Gender IN ('M','F')),
+    Bdate DATE,
+    Dno INT NOT NULL,
+    Super_SSN CHAR(9) NULL,
+    CONSTRAINT fk_emp_dept FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dno),
+    CONSTRAINT fk_emp_super FOREIGN KEY (Super_SSN) REFERENCES EMPLOYEE(SSN)
+);
+
+-- Updating the table of DEPARTMENT
+ALTER TABLE DEPARTMENT
+    ADD CONSTRAINT fk_dept_manager FOREIGN KEY (Manager_Id) REFERENCES EMPLOYEE(SSN),
+        CONSTRAINT uq_dept_manager UNIQUE (Manager_Id);
+
+-- DEPARTMENT LOCATIONS Table
+CREATE TABLE DEPT_LOCATIONS (
+    Dno INT NOT NULL,
+    Location VARCHAR(50) NOT NULL,
+    PRIMARY KEY (Dno, Location),
+    CONSTRAINT fk_deptloc_dept FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dno)
+);
+
+-- PROJECT Table
+CREATE TABLE PROJECT (
+    Pno INT PRIMARY KEY,
+    Pname VARCHAR(50) NOT NULL,
+    City VARCHAR(50),
+    Location VARCHAR(50),
+    Dno INT NOT NULL,
+    CONSTRAINT fk_proj_dept FOREIGN KEY (Dno) REFERENCES DEPARTMENT(Dno)
+);
+
+
+-- EMPLOYEE WORK Table
+CREATE TABLE EMPLOYEE_WORK(
+    SSN CHAR(9) NOT NULL,
+    Pno INT NOT NULL,
+    Working_hours DECIMAL(5,2),
+    PRIMARY KEY (SSN, Pno),
+    CONSTRAINT fk_workson_emp  FOREIGN KEY (SSN) REFERENCES EMPLOYEE(SSN),
+    CONSTRAINT fk_workson_proj FOREIGN KEY (Pno) REFERENCES PROJECT(Pno)
+);
+
+
+-- DEPENDENT Table
+CREATE TABLE DEPENDENT (
+    SSN CHAR(9) NOT NULL,
+    Dependent_name  VARCHAR(30) NOT NULL,
+    Gender CHAR(1) CHECK (Gender IN ('M','F')),
+    Bdate DATE,
+    PRIMARY KEY (SSN, Dependent_name),
+    CONSTRAINT fk_dependent_emp FOREIGN KEY (SSN) REFERENCES EMPLOYEE(SSN)
+);
