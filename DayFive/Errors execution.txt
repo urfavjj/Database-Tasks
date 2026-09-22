@@ -1,0 +1,12 @@
+
+-- Attempt to delete employee 123456789 (Can't delete becuase EMPLOYEE_WORK depends on it as FK)
+DELETE FROM EMPLOYEE
+WHERE SSN = '123456789'
+
+SELECT * FROM EMPLOYEE
+
+Error: Msg 547, Level 16, State 0, Line 191
+The DELETE statement conflicted with the REFERENCE constraint "fk_workson_emp". The conflict occurred in database "Company_Database", table "dbo.EMPLOYEE_WORK", column 'SSN'.
+The statement has been terminated.
+
+
