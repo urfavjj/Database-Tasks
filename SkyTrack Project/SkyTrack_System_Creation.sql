@@ -94,3 +94,15 @@ CREATE TABLE CREW_MEMBER(
 
 -- show table
 SELECT*FROM CREW_MEMBER
+
+--Crew Flight Table
+CREATE TABLE FLIGHTCREW(
+	Flight_no VARCHAR(50) NOT NULL,
+	License_no VARCHAR(20) NOT NULL,
+	PRIMARY KEY (Flight_no, License_no),
+	CONSTRAINT fk_flight_crew_no FOREIGN KEY (Flight_no) REFERENCES FLIGHT(Flight_no),
+	CONSTRAINT fk_flight_crew_license FOREIGN KEY (License_no) REFERENCES CREW_MEMBER(License_no)
+);
+
+-- show table
+SELECT*FROM FLIGHTCREW
