@@ -106,3 +106,35 @@ CREATE TABLE FLIGHTCREW(
 
 -- show table
 SELECT*FROM FLIGHTCREW
+
+-- insertion PASS_PHONE table
+INSERT INTO PASS_PHONE(National_Id, Phone) VALUES
+-- Jokha Al-Harthi (Omani)
+(84021991, '+968 9123 4567'),
+(84021991, '+968 2456 7890'), -- Secondary home number
+
+-- Nawras Al-Sawafi (British)
+(93051442, '+44 7123 456789'),
+
+-- Mohammed Daiyal (Indian)
+(78112233, '+91 98765 43210'),
+(78112233, '+968 9988 7766'), -- Local Oman roaming number
+
+-- Hamed Al-Harthi (Burundian)
+(89061544, '+257 22 23 4567'),
+
+-- Sept Al-Rashdi (Tanzanian)
+(95013055, '+255 22 234 5678'),
+
+-- Weam Al-Habsi (Emirati)
+(92072266, '+971 50 123 4567'),
+
+-- Fatima Alshargi (American)
+(87090877, '+1 202 555 0143'),
+
+-- Hande Erçel (Turkish)
+(96031288, '+90 532 123 4567'),
+(96031288, '+90 212 555 1234'); -- Secondary office number
+
+-- show table
+SELECT * FROM PASS_PHONE;
