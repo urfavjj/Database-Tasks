@@ -12,6 +12,10 @@ SELECT CONCAT(Fname, ' ', Lname) AS Full_Name
 FROM PASSENGER
 ORDER BY Full_Name ASC;
 
+--  Show all bookings and their class. Display only distinct class values that exist in the system
+SELECT DISTINCT Class
+FROM BOOKING
+
 -- List all aircraft and their seating capacity, ordered from largest to smallest
 SELECT Register_no, Seat_capity
 FROM AIRCRAFT
