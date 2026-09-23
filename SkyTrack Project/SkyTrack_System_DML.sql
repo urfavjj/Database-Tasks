@@ -116,4 +116,30 @@ INSERT INTO FLIGHTCREW(Flight_no, License_no)VALUES
 ('WY-999', 'CPL-5022'),   -- Co-Pilot
 ('WY-999', 'FA-8801');   -- Flight Attendant
 
-SELECT*FROM FLIGHTCREW 
+SELECT*FROM FLIGHTCREW
+
+
+ALTER TABLE AIRPORT
+ADD orgin VARCHAR(50) NOT NULL DEFAULT 'TBD', destination VARCHAR(50) NOT NULL DEFAULT 'TBD';
+
+UPDATE AIRPORT
+SET orgin = 'Muscat', destination = 'Dubai' 
+WHERE IATA = 1;
+
+UPDATE AIRPORT
+SET orgin = 'Salalah', destination = 'Muscat' 
+WHERE IATA = 2;
+
+
+UPDATE AIRPORT
+SET orgin = 'Khasab', destination = 'Dubai' 
+WHERE IATA = 4;
+
+
+UPDATE AIRPORT
+SET orgin = 'Duqum', destination = 'Muscat' 
+WHERE IATA = 3;
+
+UPDATE AIRPORT
+SET orgin = 'Dubai', destination = 'Muscat' 
+WHERE IATA = 5;
